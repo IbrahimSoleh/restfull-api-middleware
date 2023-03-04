@@ -1,0 +1,176 @@
+{
+  "openapi": "3.0.3",
+  "options": {
+    "info": {
+      "title": "Movies API 3.0",
+      "description": "Movies API",
+      "contact": {
+        "email": "ibrahimsoleh@gmail.com"
+      },
+      "version": "1.0.11"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/movies": {
+      "get": {
+        "summary": "find all movies",
+        "tags": [
+          "movies"
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessfull find movies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/movies"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create movie",
+        "tags": [
+          "movies"
+        ],
+        "requestBody": {
+          "description": "Create new movie",
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/movies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "succesfull create movies",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete movie",
+        "tags": [
+          "movies"
+        ],
+        "requestBody": {
+          "description": "delete movie",
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/movies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "delete succesfull",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "updated movie",
+        "tags": [
+          "movies"
+        ],
+        "requestBody": {
+          "description": "update movie",
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/movies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "succesfull update movies",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/movies/{id}": {
+        "get": {
+          "summary": "find by id",
+          "tags": "-movies",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": null,
+              "type": "integer",
+              "require": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "movies": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Reckless"
+          },
+          "genres": {
+            "type": "string",
+            "example": "Comedy"
+          },
+          "year": {
+            "type": "integer",
+            "example": 2021
+          }
+        }
+      }
+    },
+    "Success": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "succesfully"
+        }
+      }
+    }
+  }
+}
